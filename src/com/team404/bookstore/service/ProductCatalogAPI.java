@@ -43,40 +43,57 @@ public class ProductCatalogAPI {
     /*
      * Implementation of Factory Pattern
      * */
-    public List<BookEntity> getProductList() {
+    public Response getProductList() {
 
         List<BookEntity> list = null;
 
         list = (List<BookEntity>)daoFactory.ListSomethingById("BookDao", "getListById", 0);
 
-        return list;
+        return Response.status(Response.Status.OK).entity(jsonb.toJson(list)).build();
     }
 
     /*gets the list of products for a specific category*/
     /*
      * Implementation of Factory Pattern
      * */
+    /*
+    When the size of list is 0(Wrong Category or no book in this catefory)
+    return HTTP 400 + wrong info message
+    otherwise, return 200 + list
+    * */
+
     @GET
     @Path("/getProductList/{categoryid}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<BookEntity> getProductList(@PathParam("categoryid") int categoryid) {
+    public Response getProductList(@PathParam("categoryid") int categoryid) {
 
         List<BookEntity> list = null;
 
         list = (List<BookEntity>)daoFactory.
                 ListSomethingById("BookDao", "getListById", categoryid);
 
-        return  list;
+        if(list.size() == 0) {
+            String erroMessage = "Wrong Category or No book in this Category!";
+            return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(erroMessage)).build();
+        }
+        else {
+            return Response.status(Response.Status.OK).entity(jsonb.toJson(list)).build();
+        }
     }
 
     /* gets the detailed product information for a product.*/
     /*
      * Implementation of Factory Pattern
      * */
+    /*
+    When the book entity is equals to null ( == null, do not use .equals())
+    return HTTP 400 + wrong info message
+    otherwise, return 200 + book entity
+    * */
     @GET
     @Path("/getProductInfo/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public BookEntity getProductInfo(@PathParam("id") String id) {
+    public Response getProductInfo(@PathParam("id") String id) {
         BookEntity bookEntity = null;
         boolean flag = false;
 
@@ -84,17 +101,36 @@ public class ProductCatalogAPI {
 
         bookEntity = (BookEntity)daoFactory.getEntityById("BookDao", "getEntityById", id_int);
 
-        return  bookEntity;
+        if(bookEntity == null) {
+            String erroMessage = "Wrong Book ID!";
+            return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(erroMessage)).build();
+        }
+        else {
+            return Response.status(Response.Status.OK).entity(jsonb.toJson(bookEntity)).build();
+        }
     }
 
+    /* gets the detailed information for a category.*/
+    /*
+    When the category entity is equals to null ( == null, do not use .equals())
+    return HTTP 400 + wrong info message
+    otherwise, return 200 + category entity
+    * */
     @GET
     @Path("/getCategory/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public CategoryEntity getCategory(@PathParam("id") int id) {
+    public Response getCategory(@PathParam("id") int id) {
         categoryDao = new CategoryDao();
 
         CategoryEntity categoryEntity = categoryDao.getCategoryById(id);
 
-        return categoryEntity;
+        if(categoryEntity == null) {
+            String erroMessage = "Wrong Category ID!";
+            return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(erroMessage)).build();
+        }
+        else {
+            return Response.status(Response.Status.OK).entity(categoryEntity).build();
+        }
+
     }
 }

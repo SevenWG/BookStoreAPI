@@ -45,8 +45,9 @@ public class ServiceTest {
         System.out.println(json);
 
         OrderProcessAPI orderProcessAPI = new OrderProcessAPI();
-        System.out.println(orderProcessAPI.createOrder("1"));
-
+//        System.out.println(orderProcessAPI.createOrder("1"));
+        ProductCatalogAPI productCatalogAPI = new ProductCatalogAPI();
+        System.out.println(productCatalogAPI.getProductInfo("1") == null);
 
 
     }
