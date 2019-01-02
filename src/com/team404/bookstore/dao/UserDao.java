@@ -32,12 +32,9 @@ public class UserDao {
     }
 
     public UserEntity GetUserById (int id) {
-
         Session session = sessionFactory.openSession();
-
         Transaction transaction = null;
         UserEntity userEntity = null;
-
         try {
             transaction = session.beginTransaction();
             userEntity = (UserEntity) session.get(UserEntity.class, id);
