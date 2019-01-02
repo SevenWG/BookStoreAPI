@@ -7,6 +7,7 @@ import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 
@@ -21,31 +22,49 @@ public class OrderProcessAPI {
 
     private DaoFactoryImpl daoFactory = DaoFactoryImpl.SingleDaoFactory();
     private OrderServiceFacade orderServiceFacade;
+    private static Jsonb jsonb = JsonbBuilder.create();
 
+    /* gets the user entity by user account .*/
+    /*
+    When the user entity is equals to null ( == null, do not use .equals())
+    return HTTP 400 + wrong info message
+    otherwise, return 200 + user entity
+    * */
     @GET
     @Path("/GetUserByAccount/{userAccount}")
     @Produces(MediaType.APPLICATION_JSON)
-    public UserEntity GetUserByAccount(@PathParam("userAccount") String userAccount){
+    public Response GetUserByAccount(@PathParam("userAccount") String userAccount){
 
         userDao = new UserDao();
 
         UserEntity userEntity = userDao.GetUserbyAccount(userAccount);
 
-        return  userEntity;
+        if(userEntity == null) {
+            String errorMessage = "Wrong user name, Cannot find this user!";
+            return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(errorMessage)).build();
+        }
+        else {
+            return Response.status(Response.Status.OK).entity(jsonb.toJson(userEntity)).build();
+        }
     }
 
+    /*Submit Function*/
+    /*不同于之前项目里的注册方法，由于不熟悉POST方法，不知道如何通过Jersey传递对象，所以在接收前先提前将对象转换为了json字符串，该方法接收到数据后再转换回对象
+     * Different from the registration method in the previous project, because I am not familiar with the POST method, I don't know how to pass the object through Jersey.
+     * So I convert the object to json string before receiving it. The method receives the data and then converts it back to the object.*/
+    /*Reference:https://www.ibm.com/developerworks/cn/java/j-javaee8-json-binding-1/index.html?ca=drs-&utm_source=tuicool&utm_medium=referral*/
+    /*该方法目前无法用测试类测试，使用的测试工具为Restlet Client
+     * This method cannot currently be tested with a test class. The test tool used is the Restlet Client.*/
+    /*
+    When the user entity is NOT equals to null ( == null, do not use .equals())
+    return HTTP 400 + wrong info message
+    otherwise, return 200 + true
+    * */
     @POST
     @Path("/CreateAccount")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    /*Submit Function*/
-    /*不同于之前项目里的注册方法，由于不熟悉POST方法，不知道如何通过Jersey传递对象，所以在接收前先提前将对象转换为了json字符串，该方法接收到数据后再转换回对象
-    * Different from the registration method in the previous project, because I am not familiar with the POST method, I don't know how to pass the object through Jersey.
-    * So I convert the object to json string before receiving it. The method receives the data and then converts it back to the object.*/
-    /*Reference:https://www.ibm.com/developerworks/cn/java/j-javaee8-json-binding-1/index.html?ca=drs-&utm_source=tuicool&utm_medium=referral*/
-    /*该方法目前无法用测试类测试，使用的测试工具为Restlet Client
-    * This method cannot currently be tested with a test class. The test tool used is the Restlet Client.*/
-    public boolean CreateAccount(String json) {
+    public Response CreateAccount(String json) {
         boolean flag = true;
 
         userDao = new UserDao();
@@ -69,14 +88,26 @@ public class OrderProcessAPI {
             System.out.print(addressEntity.getUserid());
             addressDao.AddAddress(addressEntity);
         }
-        return  flag;
+
+        if(!flag) {
+            String errorMessage = "Registration Failed! User account already exist";
+            return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(flag)).build();
+        }
+        else {
+            return Response.status(Response.Status.OK).entity(jsonb.toJson(flag)).build();
+        }
     }
 
+    /*
+    When the user entity is equals to null ( == null, do not use .equals())
+    return HTTP 400 + wrong info message
+    otherwise, return 200 + user entity
+    * */
     @POST
     @Path("/getAccount")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean getAccount(String json) {
+    public Response getAccount(String json) {
         boolean flag = true;
         userDao = new UserDao();
 
@@ -91,39 +122,56 @@ public class OrderProcessAPI {
                 flag = false;
             }
         } else {
-
             flag = false;
         }
-        return flag;
+        if(!flag) {
+            String errorMessage = "Get Account Failed!";
+            return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(flag)).build();
+        }
+        else {
+            return Response.status(Response.Status.OK).entity(jsonb.toJson(flag)).build();
+        }
     }
 
     @GET
     @Path("/getUserinfo/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public UserEntity getUserinfo(@PathParam("id") int id) {
+    public Response getUserinfo(@PathParam("id") int id) {
         userDao = new UserDao();
 
         UserEntity userEntity = userDao.GetUserById(id);
+        if(userEntity == null) {
+            String errorMessage = "Wroing User ID!";
+            return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(errorMessage)).build();
+        }
+        else  {
+            return Response.status(Response.Status.OK).entity(jsonb.toJson(userEntity)).build();
+        }
 
-        return userEntity;
     }
 
     @GET
     @Path("/getAddressinfo/{userid}")
     @Produces(MediaType.APPLICATION_JSON)
-    public AddressEntity getAddressinfo(@PathParam("userid") int userid) {
+    public Response getAddressinfo(@PathParam("userid") int userid) {
         addressDao = new AddressDao();
 
         AddressEntity addressEntity = addressDao.getAddressByUid(userid);
 
-        return addressEntity;
+        if(addressEntity == null) {
+            String errorMessage = "Wroing User ID!";
+            return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(errorMessage)).build();
+        }
+        else  {
+            return Response.status(Response.Status.OK).entity(jsonb.toJson(addressEntity)).build();
+        }
     }
 
     @POST
     @Path("/AddItemtoCart")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public boolean AddItemtoCart(String json) {
+    public Response AddItemtoCart(String json) {
 
         shoppingCartDao = new ShoppingCartDao();
 
@@ -132,13 +180,26 @@ public class OrderProcessAPI {
 
         if(shoppingCartDao.GetCartItem(shoppingCartEntity.getUserid(),
                 shoppingCartEntity.getBookid()) == null) {
-            return shoppingCartDao.AddShoppingCart(shoppingCartEntity);
+            boolean flag = shoppingCartDao.AddShoppingCart(shoppingCartEntity);
+            if(!flag) {
+                String errorMessage = "Add Items Action Failed!";
+                return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(flag)).build();
+            }
+            else {
+                return Response.status(Response.Status.OK).entity(jsonb.toJson(flag)).build();
+            }
         }
 
         else {
-            return shoppingCartDao.UpdateItemQuantity(shoppingCartEntity);
+            boolean flag = shoppingCartDao.UpdateItemQuantity(shoppingCartEntity);
+            if(!flag) {
+                String errorMessage = "Update Items Action Failed!";
+                return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(flag)).build();
+            }
+            else {
+                return Response.status(Response.Status.OK).entity(jsonb.toJson(flag)).build();
+            }
         }
-
     }
 
     @GET
@@ -152,25 +213,30 @@ public class OrderProcessAPI {
 	com.team404.bookstore.service.OrderProcessAPI.DisplayShoppingCart(OrderProcessAPI.java:170)
 	原因：忘记实例化shoppingCartDao或者是忘记实例化daoFactory*/
 
-    public List<ShoppingCartEntity> DisplayShoppingCart(@PathParam("userid") int userid) {
-
-//        shoppingCartDao = new ShoppingCartDao();
-//        List<ShoppingCartEntity> list = shoppingCartDao.getListById(userid);
+    public Response DisplayShoppingCart(@PathParam("userid") int userid) {
 
         List<ShoppingCartEntity> list = (List<ShoppingCartEntity>)daoFactory.
                 ListSomethingById("ShoppingCartDao", "getListById", userid);
 
-        return  list;
+        return  Response.status(Response.Status.OK).entity(list).build();
     }
 
     @DELETE
     @Path("/DeleteSingleItem/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     /*Delete single item in shopping cart*/
-    public boolean DeleteSingleItem(@PathParam("id") int id) {
+    public Response DeleteSingleItem(@PathParam("id") int id) {
         shoppingCartDao = new ShoppingCartDao();
 
-        return shoppingCartDao.DeleteShoppingItemById(id);
+        boolean flag = shoppingCartDao.DeleteShoppingItemById(id);
+
+        if(!flag) {
+            String errorMessage = "Wroing Book ID! Delete Action Failed";
+            return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(flag)).build();
+        }
+        else {
+            return Response.status(Response.Status.OK).entity(jsonb.toJson(flag)).build();
+        }
     }
 
     @POST
@@ -180,7 +246,7 @@ public class OrderProcessAPI {
     /*获取自增id的配置！！！
      * 在实体类的xml文件中的id的配置行中添加<generator class="identity" />
      * */
-    public int createOrder(String json) {
+    public Response createOrder(String json) {
 
         Jsonb jsonb = JsonbBuilder.create();
         int userid = jsonb.fromJson(json, int.class);
@@ -189,13 +255,19 @@ public class OrderProcessAPI {
 
         int id = orderServiceFacade.OrderGnerator(userid);
 
-        return id;
+        if(id != 0)
+            return Response.status(Response.Status.OK).entity(jsonb.toJson(id)).build();
+        else{
+            String errorMessage = "Create Order Failed!";
+            return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(errorMessage)).build();
+        }
     }
 
+    /*Create Order Action*/
     @GET
     @Path("/confirmOrder/{orderid}")
     @Produces(MediaType.APPLICATION_JSON)
-    public boolean confirmOrder(@PathParam("orderid") int orderid) {
+    public Response confirmOrder(@PathParam("orderid") int orderid) {
         countDao = new CountDao();
         orderDao = new OrderDao();
         boolean flag = true;
@@ -209,27 +281,29 @@ public class OrderProcessAPI {
             flag = true;
             orderDao.UpdateOrderStatus(orderid, flag);
         }
-        return flag;
+        return Response.status(Response.Status.OK).entity(jsonb.toJson(flag)).build();
     }
 
     @GET
     @Path("/DisplayMyOrder/{userid}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<OrdersEntity> DisplayMyOrder (@PathParam("userid") int userid) {
+    public Response DisplayMyOrder (@PathParam("userid") int userid) {
 
         List<OrdersEntity> list =
                 (List<OrdersEntity>)daoFactory.
                         ListSomethingById("OrderDao", "getListById", userid);
 
-        return  list;
+        return  Response.status(Response.Status.OK).entity(jsonb.toJson(list)).build();
     }
 
     @GET
     @Path("/GetOrderBooks/{orderid}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<OrderBookEntity> GetOrderBooks (@PathParam("orderid") int orderid) {
+    public Response GetOrderBooks (@PathParam("orderid") int orderid) {
         orderBookDao = new OrderBookDao();
 
-        return  orderBookDao.GetOrderBookByOid(orderid);
+        List<OrderBookEntity> list = orderBookDao.GetOrderBookByOid(orderid);
+
+        return Response.status(Response.Status.OK).entity(jsonb.toJson(list)).build();
     }
 }

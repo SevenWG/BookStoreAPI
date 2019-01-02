@@ -102,8 +102,8 @@ public class ProductCatalogAPI {
         bookEntity = (BookEntity)daoFactory.getEntityById("BookDao", "getEntityById", id_int);
 
         if(bookEntity == null) {
-            String erroMessage = "Wrong Book ID!";
-            return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(erroMessage)).build();
+            String errorMessage = "Wrong Book ID!";
+            return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(errorMessage)).build();
         }
         else {
             return Response.status(Response.Status.OK).entity(jsonb.toJson(bookEntity)).build();
@@ -125,8 +125,8 @@ public class ProductCatalogAPI {
         CategoryEntity categoryEntity = categoryDao.getCategoryById(id);
 
         if(categoryEntity == null) {
-            String erroMessage = "Wrong Category ID!";
-            return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(erroMessage)).build();
+            String errorMessage = "Wrong Category ID!";
+            return Response.status(Response.Status.BAD_REQUEST).entity(jsonb.toJson(errorMessage)).build();
         }
         else {
             return Response.status(Response.Status.OK).entity(categoryEntity).build();
