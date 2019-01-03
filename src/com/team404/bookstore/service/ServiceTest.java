@@ -1,5 +1,7 @@
 package com.team404.bookstore.service;
 import com.team404.bookstore.dao.HibernateConnection;
+import com.team404.bookstore.dao.NewUnifiedDao;
+import com.team404.bookstore.dao.UnifiedDao;
 import com.team404.bookstore.entity.*;
 import com.team404.bookstore.sslConfig.SSLConfig;
 import org.hibernate.HibernateException;
@@ -64,12 +66,21 @@ public class ServiceTest {
 
 
         UserEntity userEntity1 = new UserEntity();
-        userEntity1.setUsername("NewAPItest@test.com");
-        userEntity1.setPassword("apiapi");
-        userEntity1.setLastname("API_last");
-        userEntity1.setFirstname("API_first");
+        userEntity1.setUsername("NewDAOtest@testT.com");
+        userEntity1.setPassword("daodaoT");
+        userEntity1.setLastname("DAO_lastT");
+        userEntity1.setFirstname("DAO_firstT");
 
-        System.out.println(AddTest(userEntity1));
+        NewUnifiedDao unifiedDao = new NewUnifiedDao();
+//        System.out.println(unifiedDao.AddEntity(userEntity1));
+
+        UserEntity userEntity2 = (UserEntity)unifiedDao.GetEntityById(UserEntity.class, 23);
+        System.out.println(userEntity2.getUsername());
+
+//        userEntity2.setUsername("UpdateDAO@test.comT");
+//        System.out.println(unifiedDao.UpdateEntity(userEntity2));
+
+        System.out.println(unifiedDao.DeleteEntity(userEntity2));
     }
 
     public static Object Test(String classname, int id) {
@@ -91,27 +102,27 @@ public class ServiceTest {
         return obj;
     }
 
-    public static int AddTest(Object entity) {
-        Session session = HibernateConnection.getSession();
-
-        Transaction transaction = null;
-        int id = 0;
-        try {
-            transaction = session.beginTransaction();
-            session.save(entity);
-            transaction.commit();
-            try{
-                Method m = entity.getClass().getDeclaredMethod("getId");
-                id = (int) m.invoke(entity);
-            }catch (Exception e) {
-                e.printStackTrace();
-            }
-        } catch (HibernateException e) {
-            if (transaction!=null) transaction.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return id;
-    }
+//    public static int AddTest(Object entity) {
+//        Session session = HibernateConnection.getSession();
+//        Transaction transaction = null;
+//        int id = 0;
+//
+//        try {
+//            transaction = session.beginTransaction();
+//            session.save(entity);
+//            transaction.commit();
+//            try{
+//                Method m = entity.getClass().getDeclaredMethod("getId");
+//                id = (int) m.invoke(entity);
+//            }catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        } catch (HibernateException e) {
+//            if (transaction!=null) transaction.rollback();
+//            e.printStackTrace();
+//        } finally {
+//            session.close();
+//        }
+//        return id;
+//    }
 }
