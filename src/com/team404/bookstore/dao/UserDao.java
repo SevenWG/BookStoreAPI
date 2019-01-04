@@ -6,6 +6,7 @@ import org.hibernate.*;
 import org.hibernate.Query;
 
 import java.util.List;
+import java.util.Map;
 
 public class UserDao {
     private static SessionFactory sessionFactory = HibernateConnection.singleSessionFactiory();
@@ -57,7 +58,6 @@ public class UserDao {
         UserEntity userEntity = null;
 
         try {
-
             transaction = session.beginTransaction();
             Query query = session.getNamedQuery("GetUserbyAccountQuery");
             query.setParameter("username", username);
@@ -75,4 +75,5 @@ public class UserDao {
         }
         return userEntity;
     }
+
 }

@@ -25,6 +25,6 @@
 
     <query name="ListUserEntity">FROM UserEntity </query>
     <query name="GetUserEntityusername">FROM UserEntity WHERE username = :username</query>
-
+    <query name="NewList">FROM UserEntity WHERE id in (:ids)</query>
     <query name="GetUserbyAccountQuery">FROM UserEntity WHERE username = :username</query>
 </hibernate-mapping>

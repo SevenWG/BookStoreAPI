@@ -1,9 +1,15 @@
 package com.team404.bookstore.dao;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+import java.util.List;
+
 
 /*通用DAO类的另外一种实现方式
 * 使用泛型，从而避免了使用Object而必须使用的强制转换
@@ -31,7 +37,7 @@ public class NewUnifiedDao<T> implements UnifiedDaoInterface<T> {
                 e.printStackTrace();
             }
         } catch (HibernateException e) {
-            if (transaction!=null) transaction.rollback();
+            if (transaction != null) transaction.rollback();
             e.printStackTrace();
         } finally {
             session.close();
@@ -47,11 +53,12 @@ public class NewUnifiedDao<T> implements UnifiedDaoInterface<T> {
         try {
             transaction = session.beginTransaction();
             session.delete(entity);
+            flag = true;
             transaction.commit();
         } catch (HibernateException e) {
-            if (transaction!=null) transaction.rollback();
-            flag = false;
+            if (transaction != null) transaction.rollback();
             e.printStackTrace();
+            flag = false;
         } finally {
             session.close();
         }
@@ -68,12 +75,12 @@ public class NewUnifiedDao<T> implements UnifiedDaoInterface<T> {
             transaction.commit();
 
         } catch (HibernateException e) {
-            if (transaction!=null) transaction.rollback();
+            if (transaction != null) transaction.rollback();
             e.printStackTrace();
         } finally {
             session.close();
         }
-        return  entity;
+        return  (T)entity;
     }
 
     public boolean UpdateEntity(T entity) {
@@ -84,14 +91,58 @@ public class NewUnifiedDao<T> implements UnifiedDaoInterface<T> {
         try {
             transaction = session.beginTransaction();
             session.update(entity);
+            flag = true;
             transaction.commit();
         } catch (HibernateException e) {
-            if (transaction!=null) transaction.rollback();
-            flag = false;
+            if (transaction != null) transaction.rollback();
             e.printStackTrace();
+            flag = false;
         } finally {
             session.close();
         }
         return flag;
+    }
+
+    public List<T> GetDynamicList(String hql, int firstResult, int maxResults, Map<String, Object> map){
+        Session session = HibernateConnection.getSession();
+        Transaction transaction = null;
+        List<T> list = null;
+
+        try {
+            Query query = GetQuery(session, hql, map);
+            if(firstResult != 0 && maxResults != 0) {
+                list = query.setFirstResult(firstResult).setMaxResults(maxResults).list();
+            }
+            else {
+                list = query.list();
+            }
+        } catch (HibernateException e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return list;
+    }
+
+    public Query GetQuery(Session session, String hql, Map<String, Object> map) {
+        Query query = session.createQuery(hql);
+        if(map != null) {
+            Set<String> keySet = map.keySet();
+            for(String string : keySet) {
+                Object object = map.get(string);
+
+                if(object instanceof Collection<?>) {
+                    query.setParameterList(string, (Collection<?>)object);
+                }
+                else if(object instanceof Object[]) {
+                    query.setParameterList(string, (Object[])object);
+                }else {
+                    query.setParameter(string, object);
+                }
+            }
+        }
+        System.out.println(query.toString());
+        return query;
     }
 }

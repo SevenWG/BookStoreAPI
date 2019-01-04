@@ -11,8 +11,11 @@ import org.hibernate.Transaction;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.client.Client;
+import javax.ws.rs.core.MultivaluedHashMap;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import java.lang.reflect.Method;
+import java.util.*;
 
 /*service测试类
 * 由于大部分情况下使用了Restlet Clinet或者直接浏览器输入url进行测试，所以该类中并未测试所有service方法*/
@@ -25,33 +28,48 @@ public class ServiceTest {
         UserEntity userEntity = new UserEntity();
         AddressEntity addressEntity = new AddressEntity();
 
-        userEntity.setUsername("APItest@test.com");
-        userEntity.setPassword("apiapi");
-        userEntity.setLastname("API_last");
-        userEntity.setFirstname("API_first");
+        userEntity.setUsername("UpdateAPIandDAOtest@test.com");
+        userEntity.setPassword("apidao");
+        userEntity.setLastname("UpdateAPIdao_last");
+        userEntity.setFirstname("UpdateAPIdao_first");
+        userEntity.setId(24);
 
-        addressEntity.setPhone("8193182792");
-        addressEntity.setZip("K1S 5L6");
-        addressEntity.setStreet("200 LEES AVE");
-        addressEntity.setProvince("ON");
-        addressEntity.setCountry("Canada");
+        Jsonb jsonb = JsonbBuilder.create();
 
+        String s = jsonb.toJson(userEntity);
+        System.out.println(s);
 
-        UserAddressCombine userAddressCombine = new UserAddressCombine(userEntity, addressEntity);
+        MultivaluedMap<String, String> map = new MultivaluedHashMap<>();
+        map.add("ClassName","UserEntity");
+        map.add("Json", "{\"firstname\":\"APIdao_first\",\"id\":0,\"lastname\":\"APIdao_last\",\"password\":\"apidao\",\"username\":\"NewAPIandDAOtest@test.com\"}");
+        System.out.println(map.get("Json").toString().replaceAll("[\\[\\]]", ""));
 
-        ShoppingCartEntity shoppingCartEntity = new ShoppingCartEntity();
+//        String className = "com.team404.bookstore.entity." + map.get("ClassName").toString().replaceAll("[^0-9a-zA-Z\u4e00-\u9fa5.，,。？“”]+","");
+//        Class<?> clz = Class.forName(className);
+//        Object obj = clz.getDeclaredConstructor().newInstance();
+//        System.out.println(obj.getClass().getName());
+//        addressEntity.setPhone("8193182792");
+//        addressEntity.setZip("K1S 5L6");
+//        addressEntity.setStreet("200 LEES AVE");
+//        addressEntity.setProvince("ON");
+//        addressEntity.setCountry("Canada");
+//
+//
+//        UserAddressCombine userAddressCombine = new UserAddressCombine(userEntity, addressEntity);
 
-        shoppingCartEntity.setUserid(20);
-        shoppingCartEntity.setQuantity(5);
-        shoppingCartEntity.setBookid("1627794247");
+//        ShoppingCartEntity shoppingCartEntity = new ShoppingCartEntity();
+//
+//        shoppingCartEntity.setUserid(20);
+//        shoppingCartEntity.setQuantity(5);
+//        shoppingCartEntity.setBookid("1627794247");
 
 //        int userid = 20;
 //        String json = jsonb.toJson(userid);
 //        System.out.println(json);
 
-        OrderProcessAPI orderProcessAPI = new OrderProcessAPI();
+//        OrderProcessAPI orderProcessAPI = new OrderProcessAPI();
 //        System.out.println(orderProcessAPI.createOrder("1"));
-        ProductCatalogAPI productCatalogAPI = new ProductCatalogAPI();
+//        ProductCatalogAPI productCatalogAPI = new ProductCatalogAPI();
 
 //        Response response = productCatalogAPI.getProductInfo("1118008189");
 //
@@ -65,22 +83,35 @@ public class ServiceTest {
 //        System.out.println(bookEntity.getTitle());
 
 
-        UserEntity userEntity1 = new UserEntity();
-        userEntity1.setUsername("NewDAOtest@testT.com");
-        userEntity1.setPassword("daodaoT");
-        userEntity1.setLastname("DAO_lastT");
-        userEntity1.setFirstname("DAO_firstT");
+//        UserEntity userEntity1 = new UserEntity();
+//        userEntity1.setUsername("NewDAOtest@testT.com");
+//        userEntity1.setPassword("daodaoT");
+//        userEntity1.setLastname("DAO_lastT");
+//        userEntity1.setFirstname("DAO_firstT");
+//
+//        NewUnifiedDao unifiedDao = new NewUnifiedDao();
+////        System.out.println(unifiedDao.AddEntity(userEntity1));
+//
+//        UserEntity userEntity2 = (UserEntity)unifiedDao.GetEntityById(UserEntity.class, 23);
+//        System.out.println(userEntity2.getUsername());
+//
+////        userEntity2.setUsername("UpdateDAO@test.comT");
+////        System.out.println(unifiedDao.UpdateEntity(userEntity2));
+//
+//        System.out.println(unifiedDao.DeleteEntity(userEntity2));
 
-        NewUnifiedDao unifiedDao = new NewUnifiedDao();
-//        System.out.println(unifiedDao.AddEntity(userEntity1));
-
-        UserEntity userEntity2 = (UserEntity)unifiedDao.GetEntityById(UserEntity.class, 23);
-        System.out.println(userEntity2.getUsername());
-
-//        userEntity2.setUsername("UpdateDAO@test.comT");
-//        System.out.println(unifiedDao.UpdateEntity(userEntity2));
-
-        System.out.println(unifiedDao.DeleteEntity(userEntity2));
+//        NewUnifiedDao newUnifiedDao = new NewUnifiedDao();
+//        String hql = "FROM UserEntity WHERE id in (:ids)";
+//
+//        Map<String,Object> map = new HashMap<String,Object>();
+//        List<Integer> ids = new ArrayList<>();
+//
+//        ids.add(1);ids.add(2);ids.add(5);ids.add(10);
+//        map.put("ids", ids);
+//
+//        List<UserEntity> userEntities = (List<UserEntity>) newUnifiedDao.GetDynamicList(hql, 0, 0, map);
+//        System.out.println(userEntities.size());
+//        System.out.println(userEntities.get(0).getUsername()+ " " + userEntities.get(1).getUsername()+ " " + userEntities.get(2).getUsername());
     }
 
     public static Object Test(String classname, int id) {

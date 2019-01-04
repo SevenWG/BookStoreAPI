@@ -40,4 +40,7 @@
 
     <query name="GetOdersByUidQuery">FROM OrdersEntity WHERE userid = :userid</query>
     <query name="UpdateOrderStatusQuery">UPDATE OrdersEntity SET status = :status WHERE id = :id</query>
+
+    <query name="ListOrdersEntity">FROM OrdersEntity </query>
+    <query name="ListOrdersEntityuserid">FROM OrdersEntity WHERE userid = :userid</query>
 </hibernate-mapping>

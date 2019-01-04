@@ -26,4 +26,10 @@
     <query name="DeleteItemByIdQuery">DELETE FROM ShoppingCartEntity WHERE id = :id</query>
     <query name="GetCartItemQuery">FROM ShoppingCartEntity WHERE userid = :userid AND bookid = :bookid</query>
     <query name="UpdateItemQuantityQuery">UPDATE ShoppingCartEntity SET quantity = :quantity WHERE id = :id</query>
+
+    <query name="ListShoppingCartEntity">FROM ShoppingCartEntity </query>
+    <query name="ListShoppingCartEntityuserid">FROM ShoppingCartEntity WHERE userid = :userid</query>
+    <query name="DeleteShoppingCartEntityuserid">DELETE FROM ShoppingCartEntity WHERE userid = :userid</query>
+    <query name="DeleteShoppingCartEntityid">DELETE FROM ShoppingCartEntity WHERE id = :id</query>
+
 </hibernate-mapping>
