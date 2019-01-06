@@ -169,7 +169,6 @@ public class AdminServiceAPI<T> {
         String maxResultsString = map.get("maxResults").toString().replaceAll("[\\[\\]]","");
         int firstResult = Integer.valueOf(firstResultString);
         int maxResults = Integer.valueOf(maxResultsString);
-        System.out.println(firstResult + " " + maxResults);
         //两条语句不能合并
         //必须先实例化map1，再赋值
         Map<String, Object> map1 = new HashMap<>();
