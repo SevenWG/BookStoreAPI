@@ -5,17 +5,14 @@
       <artifact name="BookStoreAPI:war exploded" />
     </artifacts-to-build>
   </component>
+  <component name="BookmarkManager">
+    <bookmark url="file://$USER_HOME$/Desktop/CSI 5380/ShopCart_Deliverables/OnlineBookStore/src/com/org/book/controller/LoginUserServlet.java" description="}" line="72" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="5819fb6d-c769-478f-b981-9a860e2f200c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/team404/bookstore/service/AdminServiceAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookStoreAPI/com/team404/bookstore/dao/NewUnifiedDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookStoreAPI/com/team404/bookstore/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookStoreAPI/com/team404/bookstore/dao/UserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookStoreAPI/com/team404/bookstore/entity/UserEntity.hbm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BookStoreAPI/com/team404/bookstore/entity/UserEntity.hbm.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BookStoreAPI/com/team404/bookstore/service/ServiceTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/team404/bookstore/dao/NewUnifiedDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/team404/bookstore/dao/NewUnifiedDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/team404/bookstore/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/team404/bookstore/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/team404/bookstore/entity/UserEntity.hbm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/team404/bookstore/entity/UserEntity.hbm.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/team404/bookstore/service/AdminServiceAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/team404/bookstore/service/AdminServiceAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/team404/bookstore/service/ServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/team404/bookstore/service/ServiceTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -69,14 +66,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="9755" />
+          <entry key="java" value="12516" />
           <entry key="txt" value="9" />
           <entry key="xml" value="463" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="9755" />
+          <entry key="JAVA" value="12516" />
           <entry key="PLAIN_TEXT" value="9" />
           <entry key="XML" value="463" />
         </counts>
@@ -88,22 +85,22 @@
           <entry key="category" value="1" />
           <entry key="class" value="4" />
           <entry key="counts" value="2" />
-          <entry key="java" value="78" />
+          <entry key="java" value="79" />
           <entry key="orderbook" value="3" />
           <entry key="orders" value="5" />
           <entry key="shoppingcart" value="9" />
           <entry key="sql" value="1" />
-          <entry key="user" value="21" />
-          <entry key="xml" value="31" />
+          <entry key="user" value="23" />
+          <entry key="xml" value="32" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="4" />
-          <entry key="Database Element" value="52" />
-          <entry key="JAVA" value="78" />
+          <entry key="Database Element" value="54" />
+          <entry key="JAVA" value="79" />
           <entry key="Scratch" value="1" />
-          <entry key="XML" value="31" />
+          <entry key="XML" value="32" />
         </counts>
       </usages-collector>
     </session>
@@ -113,10 +110,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/team404/bookstore/service/ServiceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="33" column="39" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
+            <state relative-caret-position="276">
+              <caret line="146" column="46" lean-forward="true" selection-start-line="146" selection-start-column="46" selection-end-line="146" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#5157#5172#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -125,8 +123,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/team404/bookstore/service/AdminServiceAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
+            <state relative-caret-position="442">
+              <caret line="157" column="8" selection-start-line="157" selection-start-column="8" selection-end-line="157" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -137,8 +135,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/team404/bookstore/dao/NewUnifiedDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
+            <state relative-caret-position="-600">
+              <caret line="79" column="3" lean-forward="true" selection-start-line="79" selection-start-column="3" selection-end-line="79" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -156,46 +154,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/team404/bookstore/dao/ShoppingCartDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/team404/bookstore/dao/DaoFactoryImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="32" column="80" lean-forward="true" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="80" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/team404/bookstore/entity/UserEntity.hbm.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="405">
-              <caret line="27" column="60" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/team404/bookstore/service/TimeGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="27" column="60" lean-forward="true" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -282,10 +244,9 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="y" value="23" />
-    <option name="width" value="716" />
-    <option name="height" value="824" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -381,6 +342,13 @@
               <item name="BookStoreAPI" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="bookstore" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BookStoreAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BookStoreAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="bookstore" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -394,7 +362,7 @@
     <property name="JPA.DatabaseSchemaImportDialog" value="f0201633-f02d-4718-b161-c308d025ea71" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546581884256" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546739233812" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -601,15 +569,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1546102762586</updated>
-      <workItem from="1546102766676" duration="67164000" />
+      <workItem from="1546102766676" duration="77942000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67164000" />
+    <option name="totallyTimeSpent" value="77942000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Persistence" sideWeight="0.19748653" side_tool="true" visible="true" weight="0.1881259" />
@@ -641,7 +609,7 @@
       <window_info anchor="right" id="Capture Analysis" />
       <window_info anchor="right" id="CDI" />
       <window_info anchor="right" id="Maven Projects" />
-      <window_info anchor="right" id="Database" visible="true" weight="0.16881259" />
+      <window_info anchor="right" id="Database" visible="true" weight="0.1502146" />
       <window_info anchor="right" id="Palette&#9;" />
       <window_info anchor="right" id="Theme Preview" />
       <window_info anchor="right" id="Bean Validation" />
@@ -658,7 +626,7 @@
       <window_info id="Image Layers" order="5" />
       <window_info id="Learn" order="6" weight="0.3297568" />
       <window_info id="Web" order="7" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="8" sideWeight="0.8025135" visible="true" weight="0.1881259" />
+      <window_info content_ui="combo" id="Project" order="8" sideWeight="0.8025135" visible="true" weight="0.1881259" />
       <window_info id="Structure" order="9" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Application Servers" order="0" weight="0.32891566" />
       <window_info anchor="bottom" id="Database Console" order="1" weight="0.32891566" />
@@ -670,7 +638,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="8" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="10" visible="true" weight="0.32891566" />
+      <window_info active="true" anchor="bottom" id="Run" order="10" visible="true" weight="0.32891566" />
       <window_info anchor="bottom" id="Debug" order="11" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
@@ -678,7 +646,7 @@
       <window_info anchor="right" id="Palette" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Maven Projects" order="2" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.16881259" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.1502146" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="CDI" order="6" />
@@ -1060,13 +1028,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/team404/bookstore/entity/UserEntity.hbm.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="60" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/team404/bookstore/service/OrderProcessAPI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3978">
@@ -1097,13 +1058,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/team404/bookstore/dao/NewUnifiedDao.java">
+    <entry file="file://$PROJECT_DIR$/src/com/team404/bookstore/entity/UserEntity.hbm.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="405">
+          <caret line="27" column="60" lean-forward="true" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="60" />
         </state>
       </provider>
     </entry>
@@ -1116,8 +1074,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/team404/bookstore/service/ServiceTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="33" column="39" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
+        <state relative-caret-position="276">
+          <caret line="146" column="46" lean-forward="true" selection-start-line="146" selection-start-column="46" selection-end-line="146" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5157#5172#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/team404/bookstore/dao/NewUnifiedDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-600">
+          <caret line="79" column="3" lean-forward="true" selection-start-line="79" selection-start-column="3" selection-end-line="79" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1126,8 +1095,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/team404/bookstore/service/AdminServiceAPI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
+        <state relative-caret-position="442">
+          <caret line="157" column="8" selection-start-line="157" selection-start-column="8" selection-end-line="157" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

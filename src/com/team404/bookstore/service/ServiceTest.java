@@ -11,11 +11,14 @@ import org.hibernate.Transaction;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.client.Client;
+import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.util.*;
+import javax.ws.rs.*;
 
 /*service测试类
 * 由于大部分情况下使用了Restlet Clinet或者直接浏览器输入url进行测试，所以该类中并未测试所有service方法*/
@@ -43,6 +46,31 @@ public class ServiceTest {
         map.add("ClassName","UserEntity");
         map.add("Json", "{\"firstname\":\"APIdao_first\",\"id\":0,\"lastname\":\"APIdao_last\",\"password\":\"apidao\",\"username\":\"NewAPIandDAOtest@test.com\"}");
         System.out.println(map.get("Json").toString().replaceAll("[\\[\\]]", ""));
+
+        Map<String,Object> map1 = new HashMap<String,Object>();
+        List<Integer> ids = new ArrayList<>();
+        ids.add(1);ids.add(2);ids.add(5);ids.add(10);
+        map1.put("ids", ids);
+
+        String ss =jsonb.toJson(map1);
+        System.out.println(ss);
+        ss = "[" + ss +"]";
+        System.out.println(ss);
+
+        Map<String, Object> map2 = new HashMap<>();
+        map2 = jsonb.fromJson(ss.substring(1, ss.length()-2), map2.getClass());
+        System.out.println(map2.get("ids").toString());
+
+        Form form = new Form();
+        form.param("firstResult", "0");
+        form.param("maxResults", "0");
+
+
+        MultivaluedMap<String, String> map3 = form.asMap();
+        System.out.println(Integer.parseInt("[0]".replaceAll("[\\[\\]]","")));
+
+
+
 
 //        String className = "com.team404.bookstore.entity." + map.get("ClassName").toString().replaceAll("[^0-9a-zA-Z\u4e00-\u9fa5.，,。？“”]+","");
 //        Class<?> clz = Class.forName(className);
@@ -100,18 +128,31 @@ public class ServiceTest {
 //
 //        System.out.println(unifiedDao.DeleteEntity(userEntity2));
 
-//        NewUnifiedDao newUnifiedDao = new NewUnifiedDao();
-//        String hql = "FROM UserEntity WHERE id in (:ids)";
-//
-//        Map<String,Object> map = new HashMap<String,Object>();
-//        List<Integer> ids = new ArrayList<>();
-//
-//        ids.add(1);ids.add(2);ids.add(5);ids.add(10);
-//        map.put("ids", ids);
-//
-//        List<UserEntity> userEntities = (List<UserEntity>) newUnifiedDao.GetDynamicList(hql, 0, 0, map);
+        NewUnifiedDao newUnifiedDao = new NewUnifiedDao();
+        String hql = "FROM UserEntity WHERE id in (:ids)";
+
+        Map<String,Object> map4 = new HashMap<String,Object>();
+        List<BigDecimal> ids1 = new ArrayList<>();
+
+        ids1.add(new BigDecimal(1)); ids1.add(new BigDecimal(2));
+
+        BigDecimal[] ids2 = new BigDecimal[2];
+        ids2[0] = new BigDecimal(1);
+        ids2[1] = new BigDecimal(2);
+        map4.put("ids", ids2);
+        AdminServiceAPI adminServiceAPI = new AdminServiceAPI();
+        Map<String, Object> map5 = adminServiceAPI.Transform(map4);
+        int[] arr = (int[]) map5.get("ids");
+        System.out.println(arr.length);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
+
+
+//        List<UserEntity> userEntities = (List<UserEntity>) newUnifiedDao.GetDynamicList(hql, 0, 0, map4);
 //        System.out.println(userEntities.size());
-//        System.out.println(userEntities.get(0).getUsername()+ " " + userEntities.get(1).getUsername()+ " " + userEntities.get(2).getUsername());
+//        System.out.println(userEntities.get(0).getUsername()+ " " +
+//                userEntities.get(1).getUsername()+ " " + userEntities.get(2).getUsername());
     }
 
     public static Object Test(String classname, int id) {

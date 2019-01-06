@@ -5,10 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.lang.reflect.Method;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.*;
 
 
 /*通用DAO类的另外一种实现方式
@@ -110,6 +108,7 @@ public class NewUnifiedDao<T> implements UnifiedDaoInterface<T> {
 
         try {
             Query query = GetQuery(session, hql, map);
+            System.out.println(query);
             if(firstResult != 0 && maxResults != 0) {
                 list = query.setFirstResult(firstResult).setMaxResults(maxResults).list();
             }
